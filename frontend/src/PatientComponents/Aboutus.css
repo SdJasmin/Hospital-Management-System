@@ -1,0 +1,146 @@
+/* Container: Stacks Sections Vertically */
+.aboutus-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #d8e3f9;
+    padding: 50px;
+    width: 100%;
+}
+
+/* Research and Development Section */
+.aboutus-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 29cm;
+}
+
+/* Text (Left Side) */
+.aboutus-text {
+    width: 50%;
+    color: #004d40;
+    text-align: left;
+}
+
+.aboutus-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.aboutus-text h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #004d40;
+    margin-bottom: 20px;
+}
+
+.aboutus-text p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Image (Right Side) */
+.aboutus-image {
+    width: 45%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.aboutus-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Medical Team Section */
+.medical-team-container {
+    width: 100%;
+    text-align: center;
+    padding: 50px 0;
+    background-color: #d8e3f9; 
+    /* Same as previous section */
+}
+
+.medical-team-container h1 {
+    font-size: 2.5rem; /* Slightly bigger */
+  
+    font-weight: bold;
+}
+
+.medical-team-container h2 {
+    font-size: 2rem;
+    color: #004d40;
+    margin-bottom: 30px;
+}
+
+/* Doctors Section (Image at left corner, Content fully on right) */
+.medical-team {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+    margin: auto;
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    max-width: 1000px;
+    gap: 30px;
+    margin-bottom: 40px;
+    margin-top: 1cm;
+}
+
+/* Image starts at the left corner and is bigger */
+.team-member img {
+    width: 250px; /* Increased size */
+    height: auto;
+    border-radius: 15px;
+    margin-left: 0; /* Align to left corner */
+}
+
+/* Content fully covers the right side */
+.team-content {
+    flex: 1;
+    margin-left: 2cm;
+}
+
+.team-content h3 {
+    font-size: 2rem; /* Bigger headings */
+    color: #004d40;
+    margin-bottom: 10px;
+}
+
+.team-content p {
+    font-size: 1.2rem; /* Bigger text */
+    line-height: 1.8;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .team-member {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .team-member img {
+        width: 180px; /* Slightly reduced for mobile */
+    }
+
+    .team-content h3 {
+        font-size: 1.8rem;
+    }
+
+    .team-content p {
+        font-size: 1.1rem;
+    }
+}

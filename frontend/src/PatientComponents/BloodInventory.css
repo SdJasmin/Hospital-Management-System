@@ -1,0 +1,93 @@
+.inventory-container {
+  padding: 40px 60px;
+  background: #d8e3f9;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: left;
+  margin-top: 5cm;
+}
+
+.inventory-container h1 {
+  color: #004d40;
+  margin-bottom: 30px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1cm;
+}
+
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 30px; /* gap between cards */
+  justify-content: start; /* start from left */
+}
+
+.inventory-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: 160px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.inventory-card:hover {
+  transform: scale(1.05);
+}
+
+.inventory-card h3 {
+  font-size: 28px;
+  color: #004d40;
+  margin-bottom: 10px;
+}
+
+.inventory-card p {
+  font-size: 20px;
+  color: #333;
+  margin: 0;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.status.green {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.orange {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.red {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+.alert-badge {
+  background-color: red;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  margin-top: 6px;
+  display: inline-block;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}

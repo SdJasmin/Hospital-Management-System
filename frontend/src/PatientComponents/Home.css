@@ -1,0 +1,104 @@
+/* Main container styling */
+.home-container {
+  display: flex;
+  flex-direction: column; /* Stack sections vertically */
+  align-items: stretch;
+  justify-content: flex-start;
+  background-color: #d8e3f9;
+  height: 100vh; /* Full height */
+  overflow-y: auto;
+   /* Enable vertical scrolling */
+}
+
+/* Section styling (both content and image) */
+.content-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  box-sizing: border-box;
+  margin-top: 1cm;
+  margin-left: 2cm;
+}
+
+/* No gap between first and second section */
+.content-section:first-of-type {
+  margin-bottom: 0;
+}
+
+/* No gap between second and third section */
+.new-section {
+  margin-top: 0; /* Removed margin */
+  padding: 2rem;
+}
+
+/* Reverse layout for second section */
+.reverse-layout {
+  flex-direction: row-reverse; /* Reverses the order for the second section */
+}
+
+/* Text section styling */
+.text-section {
+  flex: 1;
+  padding: 1.5rem;
+  text-align: left;
+  margin-top: 2%;
+}
+
+/* Tagline styling */
+.tagline {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #004d40;
+  margin-bottom: 1rem;
+}
+
+/* Introduction text styling */
+.introduction {
+  font-size: 1.2rem;
+  color: #333;
+  line-height: 1.8;
+}
+
+/* Image section styling */
+.image-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.doctor-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* New Section Styling (Content on Left, Image on Right) */
+.new-section {
+  background-color: #d8e3f9; /* Same background color as the first two sections */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.new-section .image-section {
+  flex: 1;
+  min-height: 200px; /* Provide space for future images */
+  background-color: #d8e3f9; /* Placeholder background */
+  border-radius: 10px;
+}
+
+.new-section .text-section {
+  flex: 1;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+/* Updated reverse layout for the second section (Image Left, Content Right) */
+.content-section.reverse-layout {
+  flex-direction: row; /* Change layout: image on left, content on right */
+}

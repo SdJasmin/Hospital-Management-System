@@ -1,0 +1,195 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Reset & General Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+   
+  
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Poppins', Arial, sans-serif;
+  background-color: #d8e3f9;
+}
+
+/* Appointment Page Background */
+/* Appointment Page Background */
+.appointment-container {
+
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  gap: 20px;
+  width: 100%;
+  margin: 0;
+
+ 
+}
+
+
+
+/* Heading Styling */
+.appointment-title, .appointment-subtitle {
+  margin-bottom: 10px;
+  font-size: 2rem;
+  color: #004d40;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Back Button */
+.appointment-back-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  font-size: 1.8rem;
+  color: #004d40;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 5px 15px;
+  border-radius: 12px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.appointment-back-button:hover {
+  background: rgba(0, 77, 64, 0.8);
+  color: white;
+}
+
+/* Form Container */
+.appointment-form-container {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Forms */
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.appointment-form label {
+  display: block;
+  font-weight: 600;
+  color: #004d40;
+  text-align: left;
+}
+
+.appointment-form div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.appointment-form input, .appointment-form select {
+  flex: 1;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #004d40;
+  background-color: rgba(255, 255, 255, 0.7);
+  outline: none;
+}
+
+/* Doctor Selection */
+.doctor-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.doctor-selection label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Buttons */
+.appointment-button {
+  width: 220px;
+  height: 50px;
+  background-color: #004d40;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  margin: 10px auto;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.appointment-button:hover {
+  background-color: #022f24;
+  transform: scale(1.05);
+}
+
+/* Option Button */
+.appointment-option-button {
+  background-color: #00695c;
+}
+
+.appointment-option-button:hover {
+  background-color: #004d40;
+}
+
+/* Button Group */
+.appointment-button-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .appointment-container {
+    padding: 10px;
+  }
+
+  .appointment-form-container {
+    max-width: 100%;
+  }
+
+  .appointment-button-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .appointment-title, .appointment-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .appointment-button {
+    width: 100%;
+  }
+
+  .appointment-back-button {
+    font-size: 1.5rem;
+    padding: 5px 10px;
+  }
+}

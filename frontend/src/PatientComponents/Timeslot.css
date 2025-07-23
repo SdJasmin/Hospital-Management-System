@@ -1,0 +1,499 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* General Page Centering */
+.page-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f0f4f3;
+  padding: 20px;
+}
+
+/* --------------------- Timeslot Section --------------------- */
+
+/* Timeslot Container */
+.timeslot-container {
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+/* Title */
+.timeslot-container h1,
+h2 {
+  color: #004d40;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 26px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+/* Buttons Styling */
+.shift-button,
+.confirm-button,
+.ok-button,
+.back-button,
+.popup-content button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+}
+
+.shift-button,
+.confirm-button,
+.ok-button,
+.popup-content button {
+  background-color: #004d40;
+}
+
+.shift-button:hover,
+.confirm-button:hover,
+.ok-button:hover,
+.popup-content button:hover {
+  background-color: #4caf50;
+}
+
+.back-button {
+  background: transparent;
+  color: #004d40;
+}
+
+.back-button:hover {
+  background: #003730;
+  color: white;
+}
+
+/* Date Picker */
+input[type="date"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 15px 0;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Back Button Container */
+.back-button-container {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+/* Popup */
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  padding: 25px;
+  text-align: center;
+}
+
+.popup-content p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Blinking Dot */
+.blinking-dot {
+  animation: blink 1s infinite;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* --------------------- Old Patient Section --------------------- */
+
+/* Old Patient Page Center */
+.old-patient-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #f0f4f3;
+  padding: 20px;
+}
+
+/* Container */
+.old-patient-container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Titles */
+.old-patient-container h1 {
+  font-size: 24px;
+  color: #004d40;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.patient-label {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Inputs */
+.old-patient-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.old-patient-container input:focus {
+  border-color: #005a4a;
+  outline: none;
+}
+
+/* Verify Button */
+.verify-button {
+  width: 100%;
+  background-color: #005a4a;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.verify-button:hover {
+  background-color: #003d32;
+}
+
+.verify-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Success Popup */
+.success-popup {
+  margin-top: 15px;
+  background: #d4edda;
+  color: #155724;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  border: 1px solid #c3e6cb;
+}
+
+/* --------------------- Responsive --------------------- */
+
+@media (max-width: 768px) {
+  .timeslot-container {
+    max-width: 95%;
+  }
+
+  .old-patient-container {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 500px) {
+  .confirm-button,
+  .ok-button,
+  .verify-button {
+    width: 100%;
+  }
+
+  .popup-container {
+    width: 90%;
+  }
+}  now for this file /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* General Page Centering */
+.page-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f0f4f3;
+  padding: 20px;
+}
+
+/* --------------------- Timeslot Section --------------------- */
+
+/* Timeslot Container */
+.timeslot-container {
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+/* Title */
+.timeslot-container h1,
+h2 {
+  color: #004d40;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 26px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+/* Buttons Styling */
+.shift-button,
+.confirm-button,
+.ok-button,
+.back-button,
+.popup-content button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+  width: auto;
+}
+
+.shift-button,
+.confirm-button,
+.ok-button,
+.popup-content button {
+  background-color: #004d40;
+  width: auto;
+}
+
+.shift-button:hover,
+.confirm-button:hover,
+.ok-button:hover,
+.popup-content button:hover {
+  background-color: #4caf50;
+  width: auto;
+}
+
+.back-button {
+  background: transparent;
+  color: #004d40;
+}
+
+.back-button:hover {
+  background: #003730;
+  color: white;
+}
+
+/* Date Picker */
+input[type="date"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 15px 0;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Back Button Container */
+.back-button-container {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+/* Popup */
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  padding: 25px;
+  text-align: center;
+}
+
+.popup-content p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Blinking Dot */
+.blinking-dot {
+  animation: blink 1s infinite;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* --------------------- Old Patient Section --------------------- */
+
+/* Old Patient Page Center */
+.old-patient-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #f0f4f3;
+  padding: 20px;
+}
+
+/* Container */
+.old-patient-container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Titles */
+.old-patient-container h1 {
+  font-size: 24px;
+  color: #004d40;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.patient-label {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Inputs */
+.old-patient-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.old-patient-container input:focus {
+  border-color: #005a4a;
+  outline: none;
+}
+
+/* Verify Button */
+.verify-button {
+  width: 100%;
+  background-color: #005a4a;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.verify-button:hover {
+  background-color: #003d32;
+}
+
+.verify-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Success Popup */
+.success-popup {
+  margin-top: 15px;
+  background: #d4edda;
+  color: #155724;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  border: 1px solid #c3e6cb;
+}
+
+/* --------------------- Responsive --------------------- */
+
+@media (max-width: 768px) {
+  .timeslot-container {
+    max-width: 95%;
+  }
+
+  .old-patient-container {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 500px) {
+  .confirm-button,
+  .ok-button,
+  .verify-button {
+    width: 100%;
+  }
+
+  .popup-container {
+    width: 90%;
+  }
+}

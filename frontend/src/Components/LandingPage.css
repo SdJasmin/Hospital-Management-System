@@ -1,0 +1,60 @@
+/* General Layout */
+.landing-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 5%;
+  background-color: #d8e9f3;
+  font-family: "Arial", sans-serif;
+}
+
+/* Welcome Section */
+.welcome-section {
+  flex: 1;
+  text-align: left;
+}
+
+.welcome-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #004d40;
+  margin: 0;
+}
+
+.hospital-name {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #004d40;
+  margin-top: 10px;
+}
+
+.get-started-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #004d40;
+  color: #ffffff;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: auto;
+}
+
+.get-started-button:hover {
+  background-color: #00695c;
+}
+
+/* Image Section */
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-image {
+  max-width: 100%;
+  height: auto;
+}
