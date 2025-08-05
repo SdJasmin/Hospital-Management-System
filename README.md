@@ -1,8 +1,8 @@
-Arogya Hospital: Hospital Management System
+## Arogya Hospital: Hospital Management System
 
 Arogya Hospital Management System is a full-stack web application built using the MERN stack, designed to simplify hospital operations such as patient appointment booking, OP registration, blood bank monitoring, and more. The system ensures a seamless experience for patients, with an intuitive dashboard, secure authentication, and real-time data management.
 
-Key Features
+### Key Features
 
 Patient-Centric Appointment Flow
 - OP registration with shift, date, and doctor selection
@@ -23,7 +23,7 @@ Secure Authentication
  Blood Bank Monitoring
 - Displays real-time availability of all blood group units in the hospital
 
-Modules
+### Modules
 
 User Management and Authentication
 - Email-based registration and login
@@ -51,7 +51,7 @@ Installation Steps
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/hospital-management-system.git
+git clone https://github.com/SdJasmin/Hospital-Management-System.git
 cd hospital-management-system
 
 # Setup Frontend
