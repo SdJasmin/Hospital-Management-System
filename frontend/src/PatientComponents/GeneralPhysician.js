@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
-import Payment from "./Payment"; // Import Payment Page
 import "./Timeslot.css";
 
-const GeneralPhysician = ({ onBack, patientData, selectedDoctor, onComplete }) => {
+const GeneralPhysician = ({ onBack, patientData, selectedDoctor }) => {
   const [shift, setShift] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [availableSlots, setAvailableSlots] = useState(null);
-  const [showPayment, setShowPayment] = useState(false);
   const [appointmentConfirmed, setAppointmentConfirmed] = useState(false);
 
   const today = new Date();
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
   const formattedTomorrow = tomorrow.toISOString().split("T")[0];
-  
+
   const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
   const formattedLastDay =
     lastDayOfMonth.getFullYear() +
@@ -21,7 +19,6 @@ const GeneralPhysician = ({ onBack, patientData, selectedDoctor, onComplete }) =
     String(lastDayOfMonth.getMonth() + 1).padStart(2, "0") +
     "-" +
     String(lastDayOfMonth.getDate()).padStart(2, "0");
-  
 
   useEffect(() => {
     if (!shift || !selectedDate) return;
@@ -42,13 +39,8 @@ const GeneralPhysician = ({ onBack, patientData, selectedDoctor, onComplete }) =
     fetchSlots();
   }, [shift, selectedDate, selectedDoctor]);
 
-  const handleBookAppointment = () => {
+  const handleBookAppointment = async () => {
     if (!shift || !selectedDate) return;
-    setShowPayment(true);
-  };
-
-  const handlePaymentComplete = async () => {
-    setShowPayment(false);
 
     try {
       const response = await fetch("http://localhost:5000/api/patients/register", {
@@ -59,7 +51,7 @@ const GeneralPhysician = ({ onBack, patientData, selectedDoctor, onComplete }) =
           gender: patientData.gender,
           age: patientData.age,
           phone: patientData.phone,
-          selectedDoctor,
+          selectedDoctor: selectedDoctor.name,
           shift,
           date: selectedDate,
           email: localStorage.getItem("userEmail"),
@@ -75,10 +67,6 @@ const GeneralPhysician = ({ onBack, patientData, selectedDoctor, onComplete }) =
     }
   };
 
-  if (showPayment) {
-    return <Payment onPaymentComplete={handlePaymentComplete} />;
-  }
-
   return (
     <div className="timeslot-container">
       <div className="back-button-container">
@@ -87,7 +75,7 @@ const GeneralPhysician = ({ onBack, patientData, selectedDoctor, onComplete }) =
 
       {appointmentConfirmed ? (
         <div className="confirmation-container">
-          <h2>Your appointment was confirmed. Please check your mail. ✅</h2>
+          <h2>Your appointment was confirmed.<br></br> Please check your mail. ✅</h2>
           <button className="ok-button" onClick={() => window.location.reload()}>OK</button>
         </div>
       ) : (
@@ -110,13 +98,12 @@ const GeneralPhysician = ({ onBack, patientData, selectedDoctor, onComplete }) =
               <div className="form-container">
                 <h2>Select Date:</h2>
                 <input
-                 type="date"
-                 value={selectedDate}
-                 onChange={(e) => setSelectedDate(e.target.value)}
-                 min={formattedTomorrow}
-                 max={formattedLastDay}
-/>
-
+                  type="date"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  min={formattedTomorrow}
+                  max={formattedLastDay}
+                />
               </div>
 
               <div className="availability-container">
