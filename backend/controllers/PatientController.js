@@ -3,6 +3,7 @@ import PDFDocument from "pdfkit";
 import { transporter } from "../middlewares/Emailcong.js";
 import { Appointment_Confirmation_Email_Template } from "../libs/EmailTemplate.js";
 import { Patient } from "../models/Patient.js";
+import QRCode from "qrcode";
 
 import { v4 as uuidv4 } from "uuid";
 import path from "path";
@@ -125,7 +126,7 @@ export const downloadAppointmentPDF = async (req, res) => {
     }
 
     const serialNumber = patient.serialNumber;
-    const doc = new PDFDocument({ margin: 50 });
+    const doc = new PDFDocument({ margin: 50, lineGap: 10 }); // lineGap sets line spacing
 
     const dirPath = path.resolve("appointments");
     if (!fs.existsSync(dirPath)) {
@@ -140,22 +141,58 @@ export const downloadAppointmentPDF = async (req, res) => {
     doc.pipe(fs.createWriteStream(filePath));
     doc.pipe(res);
 
+    // Border
     doc.rect(10, 10, doc.page.width - 20, doc.page.height - 20).stroke();
 
-    doc.fontSize(20).text("Appointment Confirmation", { align: "center" });
-    doc.moveDown();
-    
-    doc.fontSize(14).text(`Serial No: ${serialNumber}`);
+    // Hospital Name
+    doc.fontSize(24).font("Helvetica-Bold").text("Arogya Hospital", { align: "center" });
+    doc.moveDown(1);
+
+    // Serial No
+    doc.fontSize(14).font("Helvetica-Bold").text(`Serial No: ${serialNumber}`, { align: "left" });
+
+    // Title
+    doc.fontSize(20).font("Helvetica-Bold").text("Appointment Form - OP", { align: "center" });
+    doc.moveDown(1.5);
+
+    // Patient Details
+    doc.fontSize(16).font("Helvetica-Bold").text("Patient Details:", { underline: true });
+    doc.moveDown(0.5);
+    doc.fontSize(14).font("Helvetica");
     doc.text(`Name: ${patient.name}`);
     doc.text(`Gender: ${patient.gender}`);
     doc.text(`Age: ${patient.age}`);
     doc.text(`Phone: ${patient.phone}`);
-    doc.text(`Doctor: ${patient.selectedDoctor}`);
-    doc.text(`Shift: ${patient.shift}`);
     doc.text(`Email: ${patient.email}`);
+    doc.text(`Appointment Date: ${patient.date}`);
+    doc.text(`Shift: ${patient.shift}`);
+    doc.moveDown(1.5);
+
+    // Doctor Details
+    doc.fontSize(16).font("Helvetica-Bold").text("Doctor Details:", { underline: true });
+    doc.moveDown(0.5);
+    doc.fontSize(14).font("Helvetica");
+    doc.text(`Consulting Doctor: Dr. ${patient.selectedDoctor}`);
+    doc.text(`Specialization: ${getDoctorSpecialization(patient.selectedDoctor)}`);
+    doc.text("Consultation Room: Room No. 2B");
+    doc.text("Hospital: Arogya Multispecialty Hospital");
+    doc.moveDown(1.5);
+
+    // QR Code
+    const qrDataUrl = await QRCode.toDataURL(patient._id.toString());
+    const qrImage = qrDataUrl.replace(/^data:image\/png;base64,/, "");
+    doc.image(Buffer.from(qrImage, 'base64'), doc.page.width - 120, 150, { width: 80 });
+
+    // Footer
+    doc.moveDown(2);
+    doc.fontSize(12).font("Helvetica").text(
+      "Thank you for choosing Arogya Hospital. For any queries, call +91-9876543210.",
+      { align: "center" }
+    );
 
     doc.end();
 
+    // Cleanup file after sending
     setTimeout(() => {
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
@@ -167,6 +204,16 @@ export const downloadAppointmentPDF = async (req, res) => {
     res.status(500).json({ message: "Error generating PDF.", error: error.message });
   }
 };
+
+// Helper to map doctor to specialization
+function getDoctorSpecialization(doctor) {
+  const map = {
+    "General Physician": "Internal Medicine",
+    "Cardiologist": "Heart & Vascular Diseases",
+    "Endocrinologist": "Hormonal Disorders",
+  };
+  return map[doctor] || "General Health";
+}
 
 // Verify serial number
 export const verifyPatientSerial = async (req, res) => {
