@@ -54,7 +54,7 @@ const formattedLastDay = lastDayOfMonth.getFullYear() +
           gender: patientData.gender,
           age: patientData.age,
           phone: patientData.phone,
-          selectedDoctor,
+          selectedDoctor: selectedDoctor.name,
           shift,
           date: selectedDate,
           email,
