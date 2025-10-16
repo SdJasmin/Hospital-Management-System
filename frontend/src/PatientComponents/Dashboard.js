@@ -58,7 +58,7 @@ const Dashboard = () => {
               <button onClick={handleLogout}>Logout</button>
             </>
           ) : (
-            <p>Please Login</p>
+            <p>Please login to see your profile</p>
           )}
         </div>
       )}

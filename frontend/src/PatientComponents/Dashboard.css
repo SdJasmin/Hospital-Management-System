@@ -86,7 +86,7 @@
     padding: 1rem; /* Add padding for content */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     z-index: 20; /* Ensure it's above other elements */
-    width: 200px; /* Optional: Set width */
+    width: 250px; /* Optional: Set width */
 }
 
 /* Dropdown Text */

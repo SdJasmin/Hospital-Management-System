@@ -118,6 +118,7 @@ export const cancelAppointment = async (req, res) => {
 };
 
 // Generate and download PDF
+// Generate and download PDF
 export const downloadAppointmentPDF = async (req, res) => {
   try {
     const patient = await Patient.findById(req.params.id);
@@ -126,7 +127,7 @@ export const downloadAppointmentPDF = async (req, res) => {
     }
 
     const serialNumber = patient.serialNumber;
-    const doc = new PDFDocument({ margin: 50, lineGap: 10 }); // lineGap sets line spacing
+    const doc = new PDFDocument({ margin: 50, lineGap: 10 }); // keep lineGap for spacing
 
     const dirPath = path.resolve("appointments");
     if (!fs.existsSync(dirPath)) {
@@ -150,33 +151,32 @@ export const downloadAppointmentPDF = async (req, res) => {
 
     // Serial No
     doc.fontSize(14).font("Helvetica-Bold").text(`Serial No: ${serialNumber}`, { align: "left" });
+    doc.moveDown(1);
 
     // Title
     doc.fontSize(20).font("Helvetica-Bold").text("Appointment Form - OP", { align: "center" });
-    doc.moveDown(1.5);
+    doc.moveDown(2);
 
     // Patient Details
     doc.fontSize(16).font("Helvetica-Bold").text("Patient Details:", { underline: true });
-    doc.moveDown(0.5);
+    doc.moveDown(1);
     doc.fontSize(14).font("Helvetica");
-    doc.text(`Name: ${patient.name}`);
-    doc.text(`Gender: ${patient.gender}`);
-    doc.text(`Age: ${patient.age}`);
-    doc.text(`Phone: ${patient.phone}`);
-    doc.text(`Email: ${patient.email}`);
-    doc.text(`Appointment Date: ${patient.date}`);
-    doc.text(`Shift: ${patient.shift}`);
-    doc.moveDown(1.5);
+    doc.text(`Name: ${patient.name}`); doc.moveDown(0.7);
+    doc.text(`Gender: ${patient.gender}`); doc.moveDown(0.7);
+    doc.text(`Age: ${patient.age}`); doc.moveDown(0.7);
+    doc.text(`Phone: ${patient.phone}`); doc.moveDown(0.7);
+    doc.text(`Email: ${patient.email}`); doc.moveDown(0.7);
+    doc.text(`Appointment Date: ${patient.date}`); doc.moveDown(0.7);
+    doc.text(`Shift: ${patient.shift}`); doc.moveDown(2);
 
     // Doctor Details
     doc.fontSize(16).font("Helvetica-Bold").text("Doctor Details:", { underline: true });
-    doc.moveDown(0.5);
+    doc.moveDown(1);
     doc.fontSize(14).font("Helvetica");
-    doc.text(`Consulting Doctor: Dr. ${patient.selectedDoctor}`);
-    doc.text(`Specialization: ${getDoctorSpecialization(patient.selectedDoctor)}`);
-    doc.text("Consultation Room: Room No. 2B");
-    doc.text("Hospital: Arogya Multispecialty Hospital");
-    doc.moveDown(1.5);
+    doc.text(`Consulting Doctor: ${patient.selectedDoctor?.name || "N/A"}`); doc.moveDown(0.7);
+    doc.text(`Specialization: ${patient.selectedDoctor?.specialty || "N/A"}`); doc.moveDown(0.7);
+    doc.text("Consultation Room: Room No. 2B"); doc.moveDown(0.7);
+    doc.text("Hospital: Arogya Multispecialty Hospital"); doc.moveDown(2);
 
     // QR Code
     const qrDataUrl = await QRCode.toDataURL(patient._id.toString());
@@ -184,7 +184,7 @@ export const downloadAppointmentPDF = async (req, res) => {
     doc.image(Buffer.from(qrImage, 'base64'), doc.page.width - 120, 150, { width: 80 });
 
     // Footer
-    doc.moveDown(2);
+    doc.moveDown(3);
     doc.fontSize(12).font("Helvetica").text(
       "Thank you for choosing Arogya Hospital. For any queries, call +91-9876543210.",
       { align: "center" }
@@ -204,6 +204,7 @@ export const downloadAppointmentPDF = async (req, res) => {
     res.status(500).json({ message: "Error generating PDF.", error: error.message });
   }
 };
+
 
 // Helper to map doctor to specialization
 function getDoctorSpecialization(doctor) {

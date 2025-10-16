@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-   
+  
   
 }
 
@@ -14,6 +14,7 @@ html, body, #root {
   height: 100%;
   font-family: 'Poppins', Arial, sans-serif;
   background-color: #d8e3f9;
+  
 }
 
 /* Appointment Page Background */
@@ -31,6 +32,9 @@ html, body, #root {
   gap: 20px;
   width: 100%;
   margin: 0;
+  
+  
+ 
 
  
 }
@@ -40,6 +44,7 @@ html, body, #root {
 /* Heading Styling */
 .appointment-title, .appointment-subtitle {
   margin-bottom: 10px;
+  
   font-size: 2rem;
   color: #004d40;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -47,7 +52,7 @@ html, body, #root {
 
 /* Back Button */
 .appointment-back-button {
-  background: rgba(255, 255, 255, 0.2);
+  background: white;
   border: none;
   font-size: 1.8rem;
   color: #004d40;
@@ -58,6 +63,7 @@ html, body, #root {
   position: absolute;
   top: 20px;
   left: 20px;
+  margin-top: 2cm;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -78,8 +84,10 @@ html, body, #root {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  max-width: 400px;
+  max-width: 480px;
   width: 100%;
+  margin-top: 2cm;
+  
 }
 
 /* Forms */
@@ -192,4 +200,93 @@ html, body, #root {
     font-size: 1.5rem;
     padding: 5px 10px;
   }
+}
+.doctor-card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* allows wrap on smaller screens */
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.doctor-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.doctor-card:hover {
+  transform: scale(1.05);
+}
+
+.doctor-card-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.doctor-card-info h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2rem;
+  color: #004d40;
+}
+
+.doctor-card-info p {
+  font-size: 0.95rem;
+  color: #333;
+}
+.doctor-details-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.doctor-details-left {
+  flex: 0 0 220px;
+}
+
+.doctor-details-image-large {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.doctor-details-right {
+  flex: 1;
+}
+
+.doctor-details-right h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.doctor-details-right h4 {
+  margin-top: 0;
+font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.doctor-details-right p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
 }

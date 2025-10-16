@@ -1,0 +1,75 @@
+.admin-blood-container {
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+  background-color: white;
+  margin-top: 3cm;
+  font-family: Arial, sans-serif;
+}
+
+.admin-blood-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #b22222;
+}
+
+.blood-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.blood-row {
+  display: flex;
+  justify-content: space-between;
+  background: #fff3f3;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.blood-group {
+  color: #b22222;
+}
+
+.blood-units {
+  color: #333;
+}
+
+.update-section {
+  background: #fff3f3;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.update-section h3 {
+  margin-bottom: 12px;
+  color: #d32f2f;
+}
+
+.form-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.form-group select,
+.form-group input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-group button {
+  padding: 8px 15px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  background: #d32f2f;
+}

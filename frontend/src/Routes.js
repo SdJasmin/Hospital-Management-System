@@ -10,6 +10,7 @@ import Home from "./PatientComponents/Home";
 import Appointment from "./PatientComponents/Appointment";
 import BloodBank from "./PatientComponents/BloodInventory";
 import Aboutus  from "./PatientComponents/Aboutus";
+import AdminBloodBank from "./Components/AdminBloodBank";
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/resetpassword" element={<ResetPassword />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/admin" element={<AdminBloodBank />} />
 
       {/* Dashboard Layout with Nested Routes */}
       <Route path="/dashboard" element={<Dashboard />}>

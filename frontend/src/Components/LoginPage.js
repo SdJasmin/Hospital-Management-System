@@ -9,20 +9,30 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post("http://localhost:5000/auth/login", { email, password });
-      if (data.success) {
-        localStorage.setItem("authToken", data.token);
-        navigate("/dashboard/appointment");
-      } else {
-        setError(data.message || "Login failed.");
-      }
-    } catch {
-      setError("An error occurred. Please try again.");
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // Special case: Admin login without API call
+  if (email === "admin@gmail.com" && password === "admin") {
+    localStorage.setItem("authToken", "admin-static-token"); // or skip if not needed
+    navigate("/admin");
+    return;
+  }
+
+  // Normal user login
+  try {
+    const { data } = await axios.post("http://localhost:5000/auth/login", { email, password });
+    if (data.success) {
+      localStorage.setItem("authToken", data.token);
+      navigate("/dashboard/appointment");
+    } else {
+      setError(data.message || "Login failed.");
     }
-  };
+  } catch {
+    setError("An error occurred. Please try again.");
+  }
+};
+
 
   return (
     <div className="page-container">
