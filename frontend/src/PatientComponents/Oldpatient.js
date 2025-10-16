@@ -16,7 +16,7 @@ const OldPatient = ({ onBack, onComplete }) => {
 
     setLoading(true);
     try {
-      const response = await axios.post(`${API_BASE_URL}/patients/verify`, { serialNumber });
+      const response = await axios.post(`${API_BASE_URL}/api/patients/verify`, { serialNumber });
 
 
       if (response.data.verified) {
