@@ -27,7 +27,7 @@ const GeneralPhysician = ({ onBack, patientData, selectedDoctor }) => {
     const fetchSlots = async () => {
       try {
        const response = await fetch(
-  `${API_BASE_URL}/patients/getAvailableSlots?date=${selectedDate}&shift=${shift}&doctor=${selectedDoctor}`
+  `${API_BASE_URL}/patients/getAvailableSlots?date=${selectedDate}&shift=${shift}&doctor=${selectedDoctor.name}`
 );
 
         const data = await response.json();
