@@ -23,7 +23,7 @@ const formattedLastDay = lastDayOfMonth.getFullYear() +
     const fetchSlots = async () => {
       try {
         const response = await fetch(
-  `${API_BASE_URL}/patients/getAvailableSlots?date=${selectedDate}&shift=${shift}&doctor=${selectedDoctor}`
+  `${API_BASE_URL}/api/patients/getAvailableSlots?date=${selectedDate}&shift=${shift}&doctor=${selectedDoctor}`
 );
 
         const data = await response.json();
@@ -48,7 +48,7 @@ const formattedLastDay = lastDayOfMonth.getFullYear() +
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/patients/register`, {
+      const response = await fetch(`${API_BASE_URL}/api/patients/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
