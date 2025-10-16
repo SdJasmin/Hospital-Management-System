@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 import "./ResetPassword.css";
 
 const ResetPassword = () => {
@@ -26,10 +27,13 @@ const ResetPassword = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/auth/resetpassword", {
-        email: email,
-        newPassword: password,
-      });
+     const response = await axios.post(
+        `${API_BASE_URL}/auth/resetpassword`, // use API_BASE_URL
+        {
+          email: email,
+          newPassword: password,
+        }
+      );
 
       if (response.data.success) {
         setPopupMessage("Password reset successful. Please log in.");

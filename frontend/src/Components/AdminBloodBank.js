@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config"; // adjust path if needed
+
 import "./AdminBloodBank.css";
 
 const allBloodGroups = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
@@ -13,7 +15,7 @@ const AdminBloodBank = () => {
   useEffect(() => {
     const fetchUnits = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/blood-inventory");
+        const res = await axios.get(`${API_BASE_URL}/blood-inventory`);
         const mappedUnits = {};
         allBloodGroups.forEach((grp) => {
           const match = res.data.find(
@@ -39,7 +41,7 @@ const AdminBloodBank = () => {
 
     try {
       await axios.put(
-        "http://localhost:5000/api/blood-inventory/update",
+        `${API_BASE_URL}/blood-inventory/update`,
         { bloodGroup: formData.bloodGroup, units: Number(formData.units) },
         { headers: { Authorization: `Bearer ${token}` } }
       );

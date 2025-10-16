@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 import "./SignUpPage.css";
 
 const SignUpPage = () => {
@@ -24,7 +25,7 @@ const SignUpPage = () => {
     const userData = { name, email, password };
 
     try {
-      const response = await axios.post("http://localhost:5000/auth/register", userData);
+  const response = await axios.post(`${API_BASE_URL}/auth/register`, userData);
 
       if (response.data.success) {
         setMessage("Registration successful! You can now log in.");

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Timeslot.css";
+import { API_BASE_URL } from "../config";
 
 const GeneralPhysician = ({ onBack, patientData, selectedDoctor }) => {
   const [shift, setShift] = useState("");
@@ -25,9 +26,10 @@ const GeneralPhysician = ({ onBack, patientData, selectedDoctor }) => {
 
     const fetchSlots = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/patients/getAvailableSlots?date=${selectedDate}&shift=${shift}&doctor=${selectedDoctor}`
-        );
+       const response = await fetch(
+  `${API_BASE_URL}/patients/getAvailableSlots?date=${selectedDate}&shift=${shift}&doctor=${selectedDoctor}`
+);
+
         const data = await response.json();
         setAvailableSlots(data.availableSlots);
       } catch (error) {
@@ -43,7 +45,7 @@ const GeneralPhysician = ({ onBack, patientData, selectedDoctor }) => {
     if (!shift || !selectedDate) return;
 
     try {
-      const response = await fetch("http://localhost:5000/api/patients/register", {
+  const response = await fetch(`${API_BASE_URL}/patients/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

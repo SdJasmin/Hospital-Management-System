@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./BloodInventory.css";
+import { API_BASE_URL } from "../config";
+
 
 // Initial static data to display while fetching from backend
 const initialBloodInventoryData = [
@@ -26,7 +28,8 @@ const BloodInventory = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       // Fetch live data from backend every 2 seconds
-      fetch("http://localhost:5000/api/blood-inventory")
+      fetch(`${API_BASE_URL}/api/blood-inventory`)
+
         .then((response) => response.json())
         .then((data) => {
           // Update only the units for the changed blood groups

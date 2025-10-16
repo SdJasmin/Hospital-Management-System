@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
+
 import "./Dashboard.css";
 import userprofile from "./userprofile.png";
 
@@ -13,7 +15,7 @@ const Dashboard = () => {
     const token = localStorage.getItem("authToken");
     if (token) {
       axios
-        .get("http://localhost:5000/auth/user/profile", { headers: { "x-auth-token": token } })
+        .get(`${API_BASE_URL}/auth/user/profile`, { headers: { "x-auth-token": token } })
         .then((response) => {
           setUser(response.data.user);
           localStorage.setItem("userEmail", response.data.user.email); // Store email in localStorage

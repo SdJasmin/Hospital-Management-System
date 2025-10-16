@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 import "./Timeslot.css"; 
 
 const OldPatient = ({ onBack, onComplete }) => {
@@ -15,7 +16,8 @@ const OldPatient = ({ onBack, onComplete }) => {
 
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/api/patients/verify", { serialNumber });
+      const response = await axios.post(`${API_BASE_URL}/patients/verify`, { serialNumber });
+
 
       if (response.data.verified) {
         setMessage("Verification successful!"); // Show success message

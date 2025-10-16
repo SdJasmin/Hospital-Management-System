@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../config"; // adjust the path if needed
+
 import axios from "axios";
 import "./ForgotPassword.css";
 
@@ -15,7 +17,7 @@ const ForgotPasswordPage = () => {
     setErrorMessage("");
 
     try {
-      const response = await axios.post("http://localhost:5000/auth/forgotpassword", { email });
+      const response = await axios.post(`${API_BASE_URL}/auth/forgotpassword`, { email });
       if (response.data.success) {
         localStorage.setItem("resetEmail", email);
         setStep("otp");
@@ -32,10 +34,10 @@ const ForgotPasswordPage = () => {
     setErrorMessage("");
 
     try {
-      const response = await axios.post("http://localhost:5000/auth/verify-otp", {
-        email,
-        verificationCode: otp.trim(),
-      });
+      const response = await axios.post(`${API_BASE_URL}/auth/verify-otp`, {
+  email,
+  verificationCode: otp.trim(),
+});
 
       if (response.data.success) {
         navigate("/resetpassword");

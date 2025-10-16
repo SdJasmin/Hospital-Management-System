@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./LoginPage.css";
+import { API_BASE_URL } from "../config"; // adjust the path if needed
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +23,8 @@ const LoginPage = () => {
 
   // Normal user login
   try {
-    const { data } = await axios.post("http://localhost:5000/auth/login", { email, password });
+    const { data } = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
+
     if (data.success) {
       localStorage.setItem("authToken", data.token);
       navigate("/dashboard/appointment");

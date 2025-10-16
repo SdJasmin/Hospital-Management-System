@@ -9,6 +9,7 @@ import GeneralPhysician from "./GeneralPhysician";
 import Cardiologist from "./Cardiologist";
 import Endocrinologist from "./Endocrinologist";
 
+
 const doctorList = [
   {
     name: "Dr. Anjali Verma",
