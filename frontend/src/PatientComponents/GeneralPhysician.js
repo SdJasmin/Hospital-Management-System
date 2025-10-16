@@ -46,7 +46,7 @@ const response = await fetch(
     if (!shift || !selectedDate) return;
 
     try {
-  const response = await fetch(`${API_BASE_URL}/patients/register`, {
+  const response = await fetch(`${API_BASE_URL}/api/patients/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
