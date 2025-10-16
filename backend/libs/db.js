@@ -2,11 +2,15 @@ import mongoose from "mongoose";
 
 const dbCon = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URL);
-    console.log("mongodb is connected ...");
+    await mongoose.connect(process.env.MONGODB_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("MongoDB connected successfully");
   } catch (error) {
-    console.log("mongodb connection error", error);
+    console.error("MongoDB connection error:", error);
   }
 };
 
 export default dbCon;
+
