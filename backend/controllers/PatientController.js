@@ -30,6 +30,8 @@ const doctorSlotLimits = {
 export const registerPatient = async (req, res) => {
   try {
     const { name, gender, age, phone, selectedDoctor, shift, email, date } = req.body;
+    console.log("Incoming req.body:", req.body);
+
 
     const maxSlots = doctorSlotLimits[selectedDoctor]?.[shift] || 20; // Default to 20 if doctor not found
     const bookedCount = await Patient.countDocuments({ date, shift, selectedDoctor });
