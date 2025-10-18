@@ -69,7 +69,7 @@ const cancelUrl = `${BASE_URL}/api/patients/cancel/${confirmationToken}`;
 
    try {
   await transporter.sendMail({
-    from: '"Arogya Hospital" <sdjasmin7314@gmail.com>',
+    from: `"Arogya Hospital" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: "Appointment Confirmation",
     html: emailTemplate,
