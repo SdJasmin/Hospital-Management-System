@@ -53,8 +53,10 @@ export const registerPatient = async (req, res) => {
     });
 
     await newPatient.save();
-    const confirmUrl = `http://localhost:5000/api/patients/confirm/${confirmationToken}`;
-    const cancelUrl = `http://localhost:5000/api/patients/cancel/${confirmationToken}`;
+    const BASE_URL = "https://hospital-backend-t2ri.onrender.com";
+const confirmUrl = `${BASE_URL}/api/patients/confirm/${confirmationToken}`;
+const cancelUrl = `${BASE_URL}/api/patients/cancel/${confirmationToken}`;
+
 
     const emailTemplate = Appointment_Confirmation_Email_Template
       .replace("{name}", name)
