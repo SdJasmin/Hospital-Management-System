@@ -64,7 +64,7 @@ export const registerPatient = async (req, res) => {
       .replace("{cancelLink}", cancelUrl);
 
     await transporter.sendMail({
-      from: '"Arogya Hospital" <sdjasmin7314@gmail.com>',
+      from: '"Arogya Hospital" <sdjasmin786@gmail.com>',
       to: email,
       subject: "Appointment Confirmation",
       html: emailTemplate,
