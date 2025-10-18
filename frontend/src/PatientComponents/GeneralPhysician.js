@@ -46,6 +46,11 @@ const response = await fetch(
     if (!shift || !selectedDate) return;
 
     try {
+      const email = localStorage.getItem("userEmail");
+if (!email) {
+  alert("Please login first");
+  return;
+}
   const response = await fetch(`${API_BASE_URL}/api/patients/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
