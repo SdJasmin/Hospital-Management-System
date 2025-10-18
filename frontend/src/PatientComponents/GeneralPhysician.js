@@ -54,7 +54,7 @@ const response = await fetch(
           gender: patientData.gender,
           age: patientData.age,
           phone: patientData.phone,
-          selectedDoctor: selectedDoctor,
+          selectedDoctor: selectedDoctor.name,
           shift,
           date: selectedDate,
           email: localStorage.getItem("userEmail"),
