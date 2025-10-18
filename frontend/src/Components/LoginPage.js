@@ -11,12 +11,12 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
   // Special case: Admin login without API call
   if (email === "admin@gmail.com" && password === "admin") {
-    localStorage.setItem("authToken", "admin-static-token"); // or skip if not needed
+    localStorage.setItem("authToken", "admin-static-token"); 
     navigate("/admin");
     return;
   }
@@ -30,9 +30,11 @@ const LoginPage = () => {
       navigate("/dashboard/appointment");
     } else {
       setError(data.message || "Login failed.");
+      console.error("Backend message:", data);
     }
-  } catch {
-    setError("An error occurred. Please try again.");
+  } catch (error) {
+    console.error("Login error:", error.response?.data || error.message); // <-- add this line
+    setError(error.response?.data?.message || "An error occurred. Please try again."); // <-- improved
   }
 };
 
