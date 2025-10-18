@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Timeslot.css";
 import { API_BASE_URL } from "../config";
+import axios from "axios";
 
 const GeneralPhysician = ({ onBack, patientData, selectedDoctor }) => {
   const [shift, setShift] = useState("");
@@ -26,12 +27,13 @@ const GeneralPhysician = ({ onBack, patientData, selectedDoctor }) => {
 
     const fetchSlots = async () => {
       try {
-const response = await fetch(
-  `${API_BASE_URL}/api/patients/getAvailableSlots?date=${selectedDate}&shift=${shift}&doctor=${selectedDoctor}`
-);
-
-
-        const data = await response.json();
+        const { data } = await axios.get(`${API_BASE_URL}/api/patients/getAvailableSlots`, {
+          params: {
+            date: selectedDate,
+            shift,
+            doctor: selectedDoctor.name,
+          },
+        });
         setAvailableSlots(data.availableSlots);
       } catch (error) {
         console.error("Error fetching slots:", error);
@@ -45,33 +47,31 @@ const response = await fetch(
   const handleBookAppointment = async () => {
     if (!shift || !selectedDate) return;
 
+    const email = localStorage.getItem("userEmail");
+    if (!email) {
+      alert("Please login first");
+      return;
+    }
+
     try {
-      const email = localStorage.getItem("userEmail");
-if (!email) {
-  alert("Please login first");
-  return;
-}
-  const response = await fetch(`${API_BASE_URL}/api/patients/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: patientData.name,
-          gender: patientData.gender,
-          age: patientData.age,
-          phone: patientData.phone,
-          selectedDoctor: selectedDoctor.name,
-          shift,
-          date: selectedDate,
-          email: localStorage.getItem("userEmail"),
-        }),
+      const { data } = await axios.post(`${API_BASE_URL}/api/patients/register`, {
+        name: patientData.name,
+        gender: patientData.gender,
+        age: patientData.age,
+        phone: patientData.phone,
+        selectedDoctor: selectedDoctor.name,
+        shift,
+        date: selectedDate,
+        email,
       });
 
-      if (response.ok) {
+      if (data.success) {
         setAppointmentConfirmed(true);
         setAvailableSlots((prevSlots) => (prevSlots > 0 ? prevSlots - 1 : 0));
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error booking appointment:", error.response?.data || error.message);
+      alert(error.response?.data?.message || "Failed to book appointment");
     }
   };
 
@@ -83,7 +83,9 @@ if (!email) {
 
       {appointmentConfirmed ? (
         <div className="confirmation-container">
-          <h2>Your appointment was confirmed.<br></br> Please check your mail. ✅</h2>
+          <h2>
+            Your appointment was confirmed.<br /> Please check your mail. ✅
+          </h2>
           <button className="ok-button" onClick={() => window.location.reload()}>OK</button>
         </div>
       ) : (
@@ -101,7 +103,9 @@ if (!email) {
           ) : (
             <>
               <h1>Book Your Appointment 📅</h1>
-              <h2>Selected Shift: {shift === "morning" ? "Morning (9 AM - 3 PM)" : "Evening (5 PM - 10 PM)"}</h2>
+              <h2>
+                Selected Shift: {shift === "morning" ? "Morning (9 AM - 3 PM)" : "Evening (5 PM - 10 PM)"}
+              </h2>
 
               <div className="form-container">
                 <h2>Select Date:</h2>
