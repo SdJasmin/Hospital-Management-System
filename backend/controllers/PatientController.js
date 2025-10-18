@@ -63,16 +63,25 @@ export const registerPatient = async (req, res) => {
       .replace("{confirmLink}", confirmUrl)
       .replace("{cancelLink}", cancelUrl);
 
-    await transporter.sendMail({
-      from: '"Arogya Hospital" <sdjasmin786@gmail.com>',
-      to: email,
-      subject: "Appointment Confirmation",
-      html: emailTemplate,
-    });
-    res.status(201).json({ 
-      message: "Appointment booked. Check your email to confirm.", 
-      confirmationToken  
-    });
+   try {
+  await transporter.sendMail({
+    from: '"Arogya Hospital" <sdjasmin7314@gmail.com>',
+    to: email,
+    subject: "Appointment Confirmation",
+    html: emailTemplate,
+  });
+  console.log(`Email sent successfully to ${email}`);
+} catch (emailError) {
+  console.error("Email sending failed:", emailError.message);
+  // Don’t fail the whole request just because email failed
+}
+
+res.status(201).json({
+  success: true,
+  message: "Appointment booked successfully. (Email delivery may fail if configuration is invalid)",
+  confirmationToken,
+});
+
 
   } catch (error) {
     console.error("Error:", error);
