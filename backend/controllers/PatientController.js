@@ -79,6 +79,14 @@ const cancelUrl = `${BASE_URL}/api/patients/cancel/${confirmationToken}`;
   console.error("Email sending failed:", emailError.message);
   // Don’t fail the whole request just because email failed
 }
+    transporter.verify((error, success) => {
+  if (error) {
+    console.error("Nodemailer connection error:", error);
+  } else {
+    console.log("Nodemailer transporter is ready to send emails.");
+  }
+});
+
 
 res.status(201).json({
   success: true,
