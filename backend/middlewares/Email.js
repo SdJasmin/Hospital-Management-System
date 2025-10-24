@@ -4,7 +4,7 @@ import { transporter } from "./Emailcong.js";
 export const Sendverificationcode = async (email, verificationcode) => {
   try {
     const response = await transporter.sendMail({
-      from: '"Arogya Hospital " <sdjasmin7314@gmail.com>',
+      from: `"Arogya Hospital" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Verify your email",
       text: "Verify your email",
@@ -19,7 +19,7 @@ export const Sendverificationcode = async (email, verificationcode) => {
 export const WelcomeEmail = async (email, name) => {
   try {
     const response = await transporter.sendMail({
-      from: '"Hospital management by jasu" <sdjasmin7314@gmail.com>',
+      from: `"Arogya Hospital" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Welcome email",
       text: "Welcome email",
