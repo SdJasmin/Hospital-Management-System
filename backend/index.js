@@ -7,6 +7,8 @@ import cors from "cors";
 import bloodInventoryRoutes from './routes/BloodInventoryRoutes.js';
 
 dotenv.config();
+console.log("EMAIL_USER:", process.env.EMAIL_USER);
+
 
 // Establish database connection
 dbCon();
